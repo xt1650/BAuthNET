@@ -28,6 +28,13 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>().AddEntityFrameworkStores<DataContext>();
+
+
+builder.Services.Configure<IdentityOptions>(opts =>
+{
+    opts.SignIn.RequireConfirmedEmail = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,7 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapIdentityApi<IdentityUser>();
+app.MapGroup("/account").MapIdentityApi<IdentityUser>();
 
 app.UseHttpsRedirection();
 
