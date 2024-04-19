@@ -1,4 +1,4 @@
-@BAuthNET_HostAddress = http://localhost:5290
+@BAuthNET_HostAddress = http://localhost:5290/swagger
 
 GET {{BAuthNET_HostAddress}}/weatherforecast/
 Accept: application/json
